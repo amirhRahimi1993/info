@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<form  method="post" enctype="multipart/form-data" id = "myform">{% csrf_token %}
+    <input id="txt_path" type="text" />
+    <p>
+        <input id="id_image" type="file" class="" name="image">
+    </p>
+    <input type="submit" value="Submit" id="btn_click"/>
+</form>
+{% block javascript %}
+    <script src="{% static 'js/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'js/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'js/jquery.fileupload.js' %}"></script>
+
+{#    PHOTOS PAGE SCRIPTS#}
+    <script src="{% static 'Super_users/js/Test.js' %}"></script>
+{% endblock %}

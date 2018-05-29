@@ -1,0 +1,458 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>وارد کردن اطلاعات</title>#}
+{#    <meta charset="utf-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+{#    <style>#}
+{#        * {#}
+{#    direction: rtl;#}
+{#    text-align: right;#}
+{#}#}
+{#.under_line#}
+{#{#}
+{#     border-style: solid;#}
+{#     border-width: 0px 0px 2px 0px;#}
+{#     padding-top: 4px;#}
+{#}#}
+{#.text_alignment{#}
+{#    alignment: right;#}
+{#    text-align: right;#}
+{#}#}
+{#.my_footer#}
+{#{#}
+{#    height: 50px;#}
+{#    margin-bottom: 0;#}
+{#    position: absolute;#}
+{#    left: 0;#}
+{#    bottom: 0;#}
+{#    width: 100%;#}
+{#    overflow: hidden;#}
+{#    font-size : smaller;#}
+{#    font-weight: bolder;#}
+{#}#}
+{#.txt_in_footer#}
+{#{#}
+{#    color:white;#}
+{#    text-align: center;#}
+{#    padding-top: 10px;#}
+{#}#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#    {% load staticfiles %}#}
+{#  <nav class="navbar navbar-inverse">#}
+{#      <div class="container-fluid">#}
+{#        <div class="navbar-header">#}
+{#          <a class="navbar-brand" href="#">WebSiteName</a>#}
+{#        </div>#}
+{#        <ul class="nav navbar-nav navbar-right">#}
+{#          <li><a href="{% url 'Super_users:Super_Usr_Home' %}">خانه</a></li>#}
+{#          <li><a href="#">درباره ما</a></li>#}
+{#          <li><a href="{% url 'Super_users:Report_activity' %}">گزارش فعالیت ها من</a></li>#}
+{#            <li><a href="{% url 'Super_users:AdvanceSearch'%}">جستجوی پیشرفته</a></li>#}
+{#            <li><a href="{% url 'Super_users:Login' %}">ورود</a></li>#}
+{#            <li><a href="{% url 'Super_users:Logout' %}">خروج</a></li>#}
+{#        </ul>#}
+{#        <form class="navbar-form navbar-right" enctype="multipart/form-data" method="post">#}
+{#          <div class="form-group">#}
+{#            <input type="text" class="form-control" placeholder="نام پزشک">#}
+{#          <input type="text" class="form-control" placeholder="فامیل پزشک">#}
+{#          </div>#}
+{#            <button type="submit" class="btn btn-success">بگرد </button>#}
+{#        </form>#}
+{#      </div>#}
+{#    </nav>#}
+{#    <br/>#}
+{#    <div class="container">#}
+{#        <h2> خوش آمدید <span id = "txt_USER_EMAIL">{{ Email }}</span></h2>#}
+{#        <form id = "frm_add" enctype="multipart/form-data">#}
+{#            {% csrf_token %}#}
+{#            <h3 class="text_alignment under_line">ورود اطلاعات</h3>#}
+{#            <span class="under_line"></span>#}
+{#            <div class="row">#}
+{#                <div class="col-6">#}
+{#                     <div class="form-group">#}
+{#                        <label >نام پزشک </label>#}
+{#                        <input type="text" class="form-control" id="txt_name" name="txt_name" required="required">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-6">#}
+{#                     <div class="form-group">#}
+{#                        <label >فامیل پزشک </label>#}
+{#                        <input type="text" class="form-control" id="txt_family" name="txt_family" required="required">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-6">#}
+{#                     <div class="form-group">#}
+{#                        <label >تخصص پزشک </label>#}
+{#                        <input type="text" class="form-control" id="txt_specialty" name="txt_specialty"  required>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-6">#}
+{#                     <div class="form-group">#}
+{#                        <label >شماره تلفن </label>#}
+{#                        <input type="tel" class="form-control" id="txt_tel" style="direction: ltr" name ="txt_tel" required="required">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-6">#}
+{#                     <div class="form-group">#}
+{#                        <label >شماره موبایل </label>#}
+{#                        <input type="tel" class="form-control" id="txt_mobile" style="direction: ltr" name ="txt_mobile">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-6">#}
+{#                     <div class="form-group">#}
+{#                        <label >لینک گوگل مپ مطب پزشک </label>#}
+{#                        <input type="text" class="form-control" id="txt_gmap" name="txt_gmap" required="required">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-6">#}
+{#                     <div class="form-group">#}
+{#                        <label >آدرس مطب </label>#}
+{#                        <input type="text" class="form-control" id="txt_Address" name="txt_Address" required="required">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-6">#}
+{#                    <div class="form-group">#}
+{#                        <label>آپلود تصویر پزشک </label>#}
+{#                        <input type="file" name="Dr_Pic_Upload" id="file_upload">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class = "row">#}
+{#                <div class="col-6">#}
+{#                    <div class="form-group">#}
+{#                        <img src = "{% static 'Super_users/Picture/capcha_create/1.jpg' %}">#}
+{#                        <br>#}
+{#                        <input type = "number" id="txt_cap"/>#}
+{#                        <span hidden="hidden" id = "Hash_capcha">{{ HASH_VALUE }}</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#             <div class="row">#}
+{#                 <div class="col-6">#}
+{#                     <div class="form-group">#}
+{#                         <button class="btn btn-success" id="btn_upload">آپلود اطلاعات </button>#}
+{#                     </div>#}
+{#                     <label class="txt-danger" id = "txt_Error"></label>#}
+{#                     <label class="txt-success" id = "txt_Success"></label>#}
+{#                 </div>#}
+{#             </div>#}
+{#        </form>#}
+{#    <div class="my_footer" style="background-color: #1b1e21; width: 100%">#}
+{#        <p class="txt_in_footer">تمامی حقوق این سایت متعلق به شرکت الگودریل می باشد</p>#}
+{#    </div>#}
+{#    </div>#}
+{#    <script>#}
+{#        alert("Fuck ajax");#}
+{#        $("#btn_upload").click(function () {#}
+{#        event.preventDefault()#}
+{#      var name = $('#txt_name').val();#}
+{#      var family = $('#txt_family').val();#}
+{#      var location = $('#txt_gmap').val();#}
+{#      var address = $('#txt_Address').val();#}
+{#      var photo_link = $('#file_upload').val();#}
+{#      var tel = $('#txt_tel').val();#}
+{#      var mobile = $('#txt_mobile').val();#}
+{#      var speciality =$('#txt_specialty').val() ;#}
+{#      alert($('#txt_USER_EMAIL').text())#}
+{#      $.ajax({#}
+{#        url: 'ajax/insert_Dr_By_adder/',#}
+{#        data: {#}
+{#            'name': name,#}
+{#            'family' : family,#}
+{#            'location' : location,#}
+{#            'address' : address,#}
+{#            'ph_link': ' '  , {#photo_link,#}
+{#            'tel' : tel,#}
+{#            'mbl' : mobile,#}
+{#            'spl': speciality,#}
+{#            'adder_email' : $('#txt_USER_EMAIL').text(),#}
+{#            'Hash_cap' : $('#Hash_capcha').text(),#}
+{#            'cap_number': $('#txt_cap').text()#}
+{#        },#}
+{#        dataType: 'json',#}
+{#        success: function (data) {#}
+{#          if (data.is_correct == 'False') {#}
+{#            alert("خطا!");#}
+{#          }#}
+{#          else#}
+{#          {#}
+{#              $('#txt_Success').text("ورود اطلاعات با موفقیت انجام شد")#}
+{#          }#}
+{#        }#}
+{#      });#}
+{#      alert(data)#}
+{##}
+{#    });#}
+{#    </script>#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>وارد کردن اطلاعات</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        * {
+    direction: rtl;
+    text-align: right;
+}
+.under_line
+{
+     border-style: solid;
+     border-width: 0px 0px 2px 0px;
+     padding-top: 4px;
+}
+.text_alignment{
+    alignment: right;
+    text-align: right;
+}
+.my_footer
+{
+    height: 50px;
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    font-size : smaller;
+    font-weight: bolder;
+}
+.txt_in_footer
+{
+    color:white;
+    text-align: center;
+    padding-top: 10px;
+}
+    </style>
+</head>
+<body>
+{% load staticfiles %}
+% load static %}
+{% static "" as baseUrl %}
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'Super_users:Super_Usr_Home' %}">خانه</a></li>
+          <li><a href="#">درباره ما</a></li>
+          <li><a href="{% url 'Super_users:Report_activity' %}">گزارش فعالیت ها من</a></li>
+            <li><a href="{% url 'Super_users:AdvanceSearch'%}">جستجوی پیشرفته</a></li>
+            <li><a href="{% url 'Super_users:Login' %}">ورود</a></li>
+            <li><a href="{% url 'Super_users:Logout' %}">خروج</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" enctype="multipart/form-data" method = "post">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="نام پزشک">
+          <input type="text" class="form-control" placeholder="فامیل پزشک">
+          </div>
+            <button type="submit" class="btn btn-success">بگرد </button>
+        </form>
+      </div>
+    </nav>
+    <br/>
+    <div class="container">
+        <h2> خوش آمدید <span id = "txt_USER_EMAIL">{{ Email }}</span></h2>
+        <form id = "frm_Login" method="post">
+            {% csrf_token %}
+            <h3 class="text_alignment under_line">ورود اطلاعات</h3>
+            <span class="under_line"></span>
+            <div class="row">
+                <div class="col-6">
+                     <div class="form-group">
+                        <label >نام پزشک </label>
+                        <input type="text" class="form-control" id="txt_name" name="txt_name" required="required">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                     <div class="form-group">
+                        <label >فامیل پزشک </label>
+                        <input type="text" class="form-control" id="txt_family" name="txt_family" required="required">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                     <div class="form-group">
+                        <label >تخصص پزشک </label>
+                        <input type="text" class="form-control" id="txt_specialty" name="txt_specialty"  required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                     <div class="form-group">
+                        <label >شماره تلفن </label>
+                        <input type="tel" class="form-control" id="txt_tel" style="direction: ltr" name ="txt_tel" required="required">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                     <div class="form-group">
+                        <label >شماره موبایل </label>
+                        <input type="tel" class="form-control" id="txt_mobile" style="direction: ltr" name ="txt_mobile">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                     <div class="form-group">
+                        <label >لینک گوگل مپ مطب پزشک </label>
+                        <input type="text" class="form-control" id="txt_gmap" name="txt_gmap" required="required">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                     <div class="form-group">
+                        <label >آدرس مطب </label>
+                        <input type="text" class="form-control" id="txt_Address" name="txt_Address" required="required">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>آپلود تصویر پزشک </label>
+                            <input type="file" name="Dr_Pic_Upload" id="file_upload">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                     <div class="form-group">
+                        <label id = "txt_Hash" hidden="hidden" >{{ HASH_VALUE }} </label>
+                        <img src="{{ baseUrl }}/Super_users/Picture/capcha_create/{{img_path}}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="number" name="capcha_number" id="capcha_num">
+                    </div>
+                </div>
+            </div>
+
+             <div class="row">
+                 <div class="col-6">
+                     <div class="form-group">
+                         <button class="btn btn-success" id="btn_upload">آپلود اطلاعات </button>
+                     </div>
+                     <label class="txt-danger" id = "txt_Error"></label>
+                     <label class="txt-success" id = "txt_Success"></label>
+                 </div>
+             </div>
+
+        </form>
+{#    <div class="my_footer" style="background-color: #1b1e21; width: 100%">#}
+{#        <p class="txt_in_footer">تمامی حقوق این سایت متعلق به شرکت الگودریل می باشد</p>#}
+{#    </div>#}
+    </div>
+<script>
+    $("#btn_upload").click(function () {
+        event.preventDefault()
+      var name = $('#txt_name').val();
+      var family = $('#txt_family').val();
+      var location = $('#txt_gmap').val();
+      var address = $('#txt_Address').val();
+      var photo_link = $('#file_upload').val();
+      var tel = $('#txt_tel').val();
+      var mobile = $('#txt_mobile').val();
+      var speciality =$('#txt_specialty').val() ;
+        if ($.isNumeric(mobile) == false || $.isNumeric(tel) == false)
+      {
+          alert("تلفن و موبایل نمی تواند شامل هیچ کاراکتری جز عدد باشد لطفا دوباره تلاش کنید");
+          $('#frm_Login')[0].reset();
+          return false;
+      }
+      if (mobile.length != 11)
+      {
+          alert("شماره موبایل بایستی11   رقمی باشد");
+          $('#frm_Login')[0].reset();
+          return false;
+      }
+
+      alert($('#txt_USER_EMAIL').text())
+      $.ajax({
+        url: 'ajax/insert_Dr_By_adder/',
+        data: {
+            'name': name,
+            'family' : family,
+            'location' : location,
+            'address' : address,
+            'ph_link': ' '  ,
+            'tel' : tel,
+            'mbl' : mobile,
+            'spl': speciality,
+            'adder_email' : $('#txt_USER_EMAIL').text(),
+            'Hash_value' : $('#txt_Hash').text(),
+            'cap_number' : $('#capcha_num').val()
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_correct == 'False') {
+            alert("خطا!");
+          }
+          else
+          {
+              $('#txt_Success').text("ورود اطلاعات با موفقیت انجام شد")
+          }
+        }
+      });
+      alert(data)
+
+    });
+</script>
+</body>
+</html>
